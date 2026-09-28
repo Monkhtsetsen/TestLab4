@@ -68,4 +68,25 @@ public class GradeCalculatorTest{
         String grade = calc.letterGrade(100.0);
         assertEquals("A", grade);
     }
+    @ParameterizedTest
+    @CsvSource({"95,A", "90,A", "89.99,B", "80,B", "70,C", "60,D", "59.99,F", "0,F"})
+     @DisplayName("Olon onoonii usgen dung shalgah")
+    void letterGradeBoundaries(double score, String expected) {
+    assertEquals(expected, new GradeCalculator().letterGrade(score));
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "10, 40, 10, 10, 30, 100",
+            "10, 30, 10, 10, 20, 80",
+            "8, 32, 9, 9, 25, 83",
+            "5, 20, 5, 5, 15, 50",
+            "0, 0, 0, 0, 0, 0",
+            "10, 40, 10, 10, 0, 70"
+    })
+    @DisplayName("Olon turliin niilber onoog shalgah")
+    void totalScoreMultipleInputs( double att, double lab, double quiz1, double quiz2, double exam, double expected) {
+    GradeCalculator calc = new GradeCalculator();
+    double actual = calc.totalScore(att, lab, quiz1, quiz2, exam);
+    assertEquals(expected, actual, 0.001);
+    }
 }
