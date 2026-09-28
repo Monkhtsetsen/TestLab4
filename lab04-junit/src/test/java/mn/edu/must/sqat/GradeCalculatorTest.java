@@ -48,7 +48,7 @@ public class GradeCalculatorTest{
         assertThrows(IllegalArgumentException.class, () -> calc.totalScore(10, 41, 10, 10, 30));
     }
     @Test
-    @DislplayName("60 onoo yag D dun baih yostoi")
+    @DisplayName("60 onoo yag D dun baih yostoi")
     void sixtyIsExactlyD(){
         GradeCalculator calc = new GradeCalculator();
         String grade = calc.letterGrade(60.0);
